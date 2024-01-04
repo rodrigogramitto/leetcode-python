@@ -15,12 +15,14 @@
 
 
 def containsDuplicate(nums) -> bool:
-        set = set()
+        myset = set()
 
         for num in nums:
-            print(num)
+            if num in myset:
+                  return True
+            myset.add(num)
 
-        return
+        return False
 
 my_nums = [1,2,3,1];
 
