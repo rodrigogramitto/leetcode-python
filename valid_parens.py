@@ -1,25 +1,14 @@
+class Solution:
+  def isValid(self, s: str) -> bool:
+    Map = {")": "(", "]": "[", "}": "{"}
+    stack = []
 
-def is_valid(s):
-  stack = list()
-
-  for char in s:
-    if char == '(' or char == '{' or char == '[':
-      stack.append(char)
-
-    if char == ')' and stack[len(stack) - 1] == '(':
-      stack.pop()
-    elif char == '}' and stack[len(stack) - 1] == '{':
-      stack.pop()
-    elif char == ']' and stack[len(stack) - 1] == '[':
+    for c in s:
+      if c not in Map:
+        stack.append(c)
+        continue
+      if not stack or stack[-1] != Map[c]:
+        return False
       stack.pop()
 
-
-  return len(stack) == 0
-
-
-
-my_vals = "()[]{)"
-
-actual = is_valid(my_vals)
-
-print(actual)
+      return not stack
